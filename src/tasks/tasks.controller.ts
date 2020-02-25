@@ -24,15 +24,15 @@ export class TasksController {
     }
 
     @Post()
-    @UsePipes()
+    @UsePipes(ValidationPipe)
     createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
         return this.taskService.createTask(createTaskDto);
     }
 
-    // @Delete('/:id')
-    // delete(@Param('id') id: string): void {
-    //     this.taskService.delete(id);
-    // }
+    @Delete('/:id')
+    delete(@Param('id', ParseIntPipe) id: number): Promise<void> {
+        return this.taskService.deleteTask(id);
+    }
 
     // @Put('/:id/status')
     // updateTaskStatus(@Param('id') id: string,
