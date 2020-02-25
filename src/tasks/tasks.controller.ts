@@ -10,14 +10,10 @@ import { TaskStatus } from './task.enum';
 export class TasksController {
     constructor(private taskService: TasksService) { }
 
-    // @Get()
-    // getAll(@Query(ValidationPipe) filterDto: TasksFilterDto): Task[] {
-    //     if (Object.keys(filterDto).length) {
-    //         return this.taskService.getTaskFilter(filterDto);
-    //     } else {
-    //         return this.taskService.getAll();
-    //     }
-    // }
+    @Get()
+    getAll(@Query(ValidationPipe) filterDto: TasksFilterDto): Promise<Task[]> {
+        return this.taskService.getAll(filterDto);
+    }
 
     @Get('/:id')
     getById(@Param('id', ParseIntPipe) id: number): Promise<Task> {
