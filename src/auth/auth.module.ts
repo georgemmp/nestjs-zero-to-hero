@@ -13,7 +13,7 @@ import { PassportModule } from '@nestjs/passport';
       secret: 'topSecret51',
       signOptions: {
         expiresIn: 3600,
-      }
+      },
     }),
     TypeOrmModule.forFeature([UserRepository]),
   ],
